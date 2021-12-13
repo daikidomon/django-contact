@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  python3:
+      build:
+        context: ./
+        dockerfile: ./Dockerfile
+      command: python manage.py runserver 0.0.0.0:${HTTP_PORT}
+      volumes:
+        - ../../.:/app
+      ports:
+        - "${HTTP_PORT}:${HTTP_PORT}"
+#      restart: always
+#      environment:
+#        PYTHONPATH: /app
+#        DB_DATABASE: "${DB_DATABASE}"
+#        DB_USERNAME: "${DB_USERNAME}"
+#        DB_PASSWORD: "${DB_PASSWORD}"
+#        DB_PORT: ${DB_PORT}
+#      depends_on:
+#        - postgres
+
+#  postgres:
+#    image: postgres:14.1
+#    restart: always
+#    environment:
+#      POSTGRES_DB: "${DB_DATABASE}"
+#      POSTGRES_USER: "${DB_USERNAME}"
+#      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+#      PGPASSWORD: "${DB_PASSWORD}"
+#      TZ: "Asia/Tokyo"
+#    ports:
+#      - ${DB_PORT}:${DB_PORT}
+#    volumes:
+#      - postgres:/var/lib/postgresql/data
+#
+#volumes:
+#  postgres:
